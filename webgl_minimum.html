@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>Minimum set of WebGL</title>
+	<script src="main.js"></script>
+	<script id="vs" type="x-shader/x-vertex">
+		attribute vec3 position;
+		void main() {
+			gl_Position = vec4(position, 1.0);
+		}
+	</script>
+	<script id="fs" type="x-shader/x-flagment">
+		precision mediump float;
+		void main() {
+			gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+		}
+	</script>
+</meta>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
