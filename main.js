@@ -1,35 +1,35 @@
 window.onload = function() {
-	// HTMLã‚Ìcanvas‚Ö‚ÌQÆ‚ğæ“¾‚·‚é
+	// HTMLä¸Šã®canvasã¸ã®å‚ç…§ã‚’å–å¾—ã™ã‚‹
 	var c = document.getElementById('canvas')
 	
-	// ƒLƒƒƒ“ƒoƒXƒTƒCƒY‚ğİ’è
+	// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚µã‚¤ã‚ºã‚’è¨­å®š
 	c.width = 512
 	c.height = 512
 	
-	// canvas‚©‚çWebGLƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// canvasã‹ã‚‰WebGLã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	var gl = c.getContext('webgl')
 	
-	// WebGL‚ğg—p‰Â”\‚©ƒ`ƒFƒbƒN
+	// WebGLã‚’ä½¿ç”¨å¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
 	if (!gl) {
 		alert('webgl not supported!')
 		return
 	}
 	
-	// ƒNƒŠƒAƒJƒ‰[‚ğİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã‚’è¨­å®š
 	gl.clearColor(0.0, 0.0, 0.0, 1.0)
 	
-	// ƒLƒƒƒ“ƒoƒX‚ğƒNƒŠƒA
+	// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’ã‚¯ãƒªã‚¢
 	gl.clear(gl.COLOR_BUFFER_BIT)
 	
-	// OŠpŒ`ƒf[ƒ^‚ğ¶¬
+	// ä¸‰è§’å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ
 	var triangleData = genTriangle()
 	
-	// ’¸“_ƒf[ƒ^‚©‚çƒoƒbƒtƒ@‚ğ¶¬
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã‚’ç”Ÿæˆ
 	var vertexBuffer = gl.createBuffer()
 	gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer)
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleData.p), gl.STATIC_DRAW)
 	
-	// ƒVƒF[ƒ_[‚ÆƒvƒƒOƒ‰ƒ€ƒIƒuƒWƒFƒNƒg
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	var vertexSource   = document.getElementById('vs').textContent
 	var fragmentSource = document.getElementById('fs').textContent
 	var vertexShader   = gl.createShader(gl.VERTEX_SHADER)
@@ -47,12 +47,12 @@ window.onload = function() {
 	gl.linkProgram(programs)
 	gl.useProgram(programs)
 	
-	// ƒvƒƒOƒ‰ƒ€ƒIƒuƒWƒFƒNƒg‚É’¸“_ƒf[ƒ^‚ğ“o˜^
+	// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²
 	var attLocation = gl.getAttribLocation(programs, 'position')
 	gl.enableVertexAttribArray(attLocation)
 	gl.vertexAttribPointer(attLocation, 3, gl.FLOAT, false, 0, 0)
 	
-	// •`‰æ
+	// æç”»
 	gl.drawArrays(gl.TRIANGLES, 0, triangleData.p.length / 3)
 	gl.flush()
 };
